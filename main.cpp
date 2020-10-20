@@ -25,7 +25,7 @@ int main()
     cin>>Hd;
     cout<<"ingrese el angulo del disparo defensivo: ";
     cin>>B;
-    cout<<"ingrese la distancia entre ambos: ";
+    cout<<"ingrese la distancia entre ambos : ";
     cin>>d;
     int Yo=Ho;
     int Yd=Hd;
