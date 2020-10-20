@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <stdlib.h>
 #include<time.h>
@@ -6,7 +7,8 @@
 using namespace std;
 
 int ramdom(int, int, int);
-int ejex(int angulo , int, int, int);
+int ejex(int angulo , int Vo, int t);
+int ejey(int angulo, int Vy, int t);
 int main()
 {
 
@@ -22,7 +24,7 @@ int random (int n, int desde, int hasta){//Funcion para generar varibles aleatro
             }
 }
 
-int ejex(int angulo, int Vo, int t ){
+int ejex(int angulo, int Vo, int t ){ //Funcion para calcular la distancia del proyectil en el eje X
     int x;
     int Xo=0;
     int vx;
@@ -30,5 +32,16 @@ int ejex(int angulo, int Vo, int t ){
     x = Xo+ vx*t;
 
     return x;
+
+}
+int ejey(int angulo, int Vo, int t ){ //Funcion para calcular la distancia del proyectil en el eje y
+    int Y;
+    float g=9.81;
+    int Yo=0;
+    int vy;
+    vy = Vo*sin(angulo)-g*t;
+    Y = Yo+vy*t-1/2*g*(t*t);
+
+    return Y;
 
 }
