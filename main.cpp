@@ -1,53 +1,93 @@
 
 #include <iostream>
-#include <stdlib.h>
-#include<time.h>
 #include<cmath>
 
 using namespace std;
 
-int ramdom(int, int, int);
-int ejex(int angulo , int Vo, int t);
-int ejey(int angulo, int Vy, int t);
+void golp_O(float aO,int Xo,int Yo, int d, int Hd, int A);
+void golp_d(float aD,int Xo,int Yo, int d, int B,  int Yd);
 int main()
 {
-    float g=9.8, pi=3.1416;
-    int Ho,A;
-    cout<<"ingrese la altura y el angulo del disparo ofensivo: ";
-    cin>>Ho>>A;
-    int d=600,Xo=0,Yo=Ho,Do=0.05*d;
-    int Hd=-100,xD=d,yD=Hd,dD=0.05*d;
-    float aO=A*pi/180, aD=0;
-    int iter=1, flag=0;
+    float pi=3.1416;
+    int Ho,Hd,A, B, d, Xo,Xd;
+    int nejer;
 
-    for(int VoO=0;VoO<100;VoO+=5){
-        float   VxO=VoO*cos(aO);
-        float   VyO=VoO*sin(aO);
-        for (int t=1;t<1000000;t++){
-            float x=Xo+ VxO*t;
-            float y=Yo+VyO*t-(1/2*g*(t*t));
-            cout<<"x: "<<x<<" y: "<<y<<endl;
-            if(sqrt(pow(d-Hd,2)+pow(x-y,2))<=Do);
-                   flag=1;
-                   break;
-        }
-        iter+=1;
 
-    }
+    cout<<"ingrese la posision en x del canon ofensivo: ";
+    cin>>Xo;
+    cout<<"ingrese la posicion en y del canon ofensivo: ";
+    cin>>Ho;
+    cout<<"ingrese el angulo del disparo ofensivo: ";
+    cin>>A;
+    cout<<"ingrese la posicion en x del canon defensivo: ";
+    cin>>Xd;
+    cout<<"ingrese la posicion en y del canon defensivo: ";
+    cin>>Hd;
+    cout<<"ingrese el angulo del disparo defensivo: ";
+    cin>>B;
+    cout<<"ingrese la distancia entre ambos: ";
+    cin>>d;
+    int Yo=Ho;
+    int Yd=Hd;
+    float aO=A*pi/180, aD=B*pi/180;
 
+    cout<<"Ingrese el ejercicio que desea realizar :";
+    cin>>nejer;
+    if(nejer==1)golp_O( aO, Xo, Yo, d, Hd,A);
+    else if (nejer==2)golp_d( aD, Xo, Yo, d,B,Yd);
 
 }
 
 
-/*
-int random (int n, int desde, int hasta){//Funcion para generar varibles aleatrotias para los parametros de lanzamiento
-    int aleatorio;
-    for (int i = 1; i <= n; i ++){
-    aleatorio = rand()%(hasta-desde+1)+desde;
-    return aleatorio;
+void golp_O(float aO,int Xo,int Yo, int d, int Hd, int A){
+    float x, y, vx, vy, v, raiz;
+    int t, cont;
+    cont=0;
+
+    for (v=0;v<=100;v+=5){
+        vx=v*cos(aO);
+        vy=v*sin(aO);
+        cout << v << endl;
+        cout << vx << endl;
+        cout << vy << endl;
+        cout << endl;
+        for(t=0;t<=1000;t+=1){
+            x=Xo+vx*t;
+            y=Yo+vy*t-(0.5*9.81*t*t);
+            raiz=pow((d-x),2)+pow((Hd-y),2);
+            if (sqrt(raiz)<=(0.05*d)){
+
+                cont=1;
+                break;
             }
+
+        }
+        if (cont==1) break;
+    }
+    cout << "el canon ofensivo golpea el defensivo cuando la velocidad es " << v <<" Y el angulo "<<A <<" en un tiempo: " << t << endl;
+
+}
+void golp_d(float aD,int Xo,int Yo, int d, int B, int Yd){
+float x, y, vx, vy, v, raiz;
+    int t, cond;
+    cond=0;
+
+    for (v=0;v<=100;v+=1){
+        vx=v*cos(aD);
+        vy=v*sin(aD);
+        for(t=0;t<=1000;t+=1){
+            x=-d+vx*t;
+            y=Yd+vy*t-(0.5*9.81*t*t);
+            raiz=pow((-Xo-x),2)+pow((Yo-y),2);
+            if (sqrt(raiz)<=(0.025*d)){
+                cond=1;
+                break;
+            }
+
+        }
+        if (cond==1) break;
+    }
+    cout << "el canon ofensivo golpea el defensivo cuando la velocidad es " << v <<" Y el angulo "<<B <<" en un tiempo: " << t << endl;
+
 }
 
-
-
-*/
