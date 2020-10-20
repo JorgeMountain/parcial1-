@@ -11,7 +11,11 @@ int ejex(int angulo , int Vo, int t);
 int ejey(int angulo, int Vy, int t);
 int main()
 {
-
+float g=9.8, pi=3.1416;
+int Ho=-100, d=600,Xo=0,Yo=Ho,Do=0.05*d;
+int Hd=-100,xD=d,yD=Hd,dD=0.05*d;
+float aO=50*pi/180, aD=0;
+int i=1, j=0;
 
     cout << "Hello World!" << endl;
     return 0;
